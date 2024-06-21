@@ -1,0 +1,13 @@
+
+.home-login-bg {
+    background-image: url(../images/background1.jpg);
+    background-size: cover;
+}
+
+.mt-150 {
+    margin-top: 150px;
+}
+
+.mt-210 {
+    margin-top: 210px;
+}
