@@ -48,6 +48,7 @@ class Enrollment(models.Model):
 
     class Meta:
         db_table = 'enrollment'
+        unique_together = ["student", "course"]
 
     def __str__(self):
         return '{} - {}'.format(self.student, self.course)
