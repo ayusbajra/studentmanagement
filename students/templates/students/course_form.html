@@ -12,22 +12,24 @@
     <form method="post">
         {% csrf_token %}
 
+        {% include "students/_field_errors.html" %}
+
         <div class="row mb-3">
-            <label for="id_course_name" class="col-sm-2 col-form-label">Course Name</label>
+            <label for="id_course_name" class="col-sm-2 offset-sm-1 col-form-label">Course Name</label>
             <div class="col-sm-3">
                 <input type="text" name="course_name" class="form-control" id="id_course_name" value="{{ course.course_name }}" required/>
             </div>
         </div>
 
         <div class="row mb-3">
-            <label for="id_course_code" class="col-sm-2 col-form-label">Course Code</label>
+            <label for="id_course_code" class="col-sm-2 offset-sm-1 col-form-label">Course Code</label>
             <div class="col-sm-3">
                 <input type="text" name="course_code" class="form-control" id="id_course_code" value="{{ course.course_code }}" required/>
             </div>
         </div>
 
         <div class="row mb-3">
-            <label for="id_description" class="col-sm-2 col-form-label">Description</label>
+            <label for="id_description" class="col-sm-2 offset-sm-1 col-form-label">Description</label>
             <div class="col-sm-3">
                 {{ form.description }}
             </div>

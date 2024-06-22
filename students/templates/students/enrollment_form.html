@@ -12,29 +12,31 @@
     <form method="post">
         {% csrf_token %}
 
+        {% include "students/_field_errors.html" %}
+
         <div class="row mb-3">
-            <label for="id_student" class="col-sm-2 col-form-label">Student</label>
+            <label for="id_student" class="col-sm-2 offset-sm-1 col-form-label">Student</label>
             <div class="col-sm-3">
                 {{ form.student }}
             </div>
         </div>
 
         <div class="row mb-3">
-            <label for="id_course" class="col-sm-2 col-form-label">Course</label>
+            <label for="id_course" class="col-sm-2 offset-sm-1 col-form-label">Course</label>
             <div class="col-sm-3">
                 {{ form.course }}
             </div>
         </div>
 
         <div class="row mb-3">
-            <label for="id_grade" class="col-sm-2 col-form-label">Grade</label>
+            <label for="id_grade" class="col-sm-2 offset-sm-1 col-form-label">Grade</label>
             <div class="col-sm-3">
                 <input type="text" name="grade" class="form-control" id="id_grade" value="{{ enrollment.grade }}" required/>
             </div>
         </div>
 
         <div class="row mb-3">
-            <label for="id_exam_score" class="col-sm-2 col-form-label">Exam Score</label>
+            <label for="id_exam_score" class="col-sm-2 offset-sm-1 col-form-label">Exam Score</label>
             <div class="col-sm-3">
                 <input type="number" name="exam_score" class="form-control" id="id_exam_score" value="{{ enrollment.exam_score }}" required/>
             </div>

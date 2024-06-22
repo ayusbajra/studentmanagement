@@ -11,3 +11,8 @@
 .mt-210 {
     margin-top: 210px;
 }
+
+.error-msg {
+    font-size: .85em;
+    padding: 10px;
+}
