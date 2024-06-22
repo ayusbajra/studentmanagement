@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 
@@ -49,7 +50,7 @@ class Enrollment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     grade = models.CharField(max_length=2)
-    exam_score = models.FloatField()
+    exam_score = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(100)])
 
     class Meta:
         db_table = 'enrollment'

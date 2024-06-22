@@ -17,6 +17,15 @@ class CourseForm(forms.ModelForm):
         }
 
 
+class InstructorForm(forms.ModelForm):
+    class Meta:
+        model = Instructor
+        fields = ['first_name', 'last_name', 'email', 'courses']
+        widgets = {
+            'courses': forms.CheckboxSelectMultiple,
+        }
+
+
 class EnrollmentForm(forms.ModelForm):
     class Meta:
         model = Enrollment
@@ -24,13 +33,4 @@ class EnrollmentForm(forms.ModelForm):
         widgets = {
             'student': forms.Select(attrs={'class': 'form-control'}),
             'course': forms.Select(attrs={'class': 'form-control'}),
-        }
-
-
-class InstructorForm(forms.ModelForm):
-    class Meta:
-        model = Instructor
-        fields = ['first_name', 'last_name', 'email', 'courses']
-        widgets = {
-            'courses': forms.CheckboxSelectMultiple,
         }
