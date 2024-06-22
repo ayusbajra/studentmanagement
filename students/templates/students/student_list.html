@@ -8,11 +8,13 @@
 {% endblock %}
 
 {% block content %}
-    <!--    search and filter here    -->
+    <!--    search here    -->
+    {% include "students/_search_form.html" %}
 
     <table class="table table-bordered align-middle">
         <thead>
             <tr>
+                <th class="text-center" width="50px">SN</th>
                 <th>Full Name</th>
                 <th>Email</th>
                 <th>DOB</th>
@@ -23,6 +25,7 @@
         <tbody>
             {% for student in object_list %}
                 <tr>
+                    <td class="text-center">{{ forloop.counter }}</td>
                     <td><a href="{% url 'student_detail' student.pk %}">{{ student }}</a></td>
                     <td>{{ student.email }}</td>
                     <td>{{ student.date_of_birth }}</td>
@@ -43,5 +46,8 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <!--    pagination here     -->
+    {% include "students/_pagination.html" %}
 
 {% endblock %}
