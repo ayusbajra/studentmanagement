@@ -57,6 +57,18 @@ class StudentDeleteView(LoginRequiredMixin, DeleteView):
 class CourseListView(LoginRequiredMixin, ListView):
     model = Course
     template_name = 'students/course_list.html'
+    ordering = ['course_name']
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(
+                Q(course_name__icontains=query) |
+                Q(course_code__icontains=query)
+            )
+        return queryset
 
 
 class CourseDetailView(LoginRequiredMixin, DetailView):
@@ -87,6 +99,20 @@ class CourseDeleteView(LoginRequiredMixin, DeleteView):
 class EnrollmentListView(LoginRequiredMixin, ListView):
     model = Enrollment
     template_name = 'students/enrollment_list.html'
+    ordering = ['student']
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(
+                Q(student__first_name__icontains=query) |
+                Q(student__last_name__icontains=query) |
+                Q(course__course_name__icontains=query) |
+                Q(course__course_code__icontains=query)
+            )
+        return queryset
 
 
 class EnrollmentDetailView(LoginRequiredMixin, DetailView):
@@ -117,6 +143,19 @@ class EnrollmentDeleteView(LoginRequiredMixin, DeleteView):
 class InstructorListView(LoginRequiredMixin, ListView):
     model = Instructor
     template_name = 'students/instructor_list.html'
+    ordering = ['first_name']
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(
+                Q(first_name__icontains=query) |
+                Q(last_name__icontains=query) |
+                Q(email__icontains=query)
+            )
+        return queryset
 
 
 class InstructorDetailView(LoginRequiredMixin, DetailView):

@@ -8,7 +8,8 @@
 {% endblock %}
 
 {% block content %}
-
+    <!--    search here    -->
+    {% include "students/_search_form.html" %}
 
     <table class="table table-bordered align-middle">
         <thead>
@@ -41,5 +42,8 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <!--    pagination here     -->
+    {% include "students/_pagination.html" %}
 
 {% endblock %}
