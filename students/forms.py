@@ -31,6 +31,6 @@ class EnrollmentForm(forms.ModelForm):
         model = Enrollment
         fields = ['student', 'course', 'grade', 'exam_score']
         widgets = {
-            'student': forms.Select(attrs={'class': 'form-control'}),
-            'course': forms.Select(attrs={'class': 'form-control'}),
+            'student': forms.Select(attrs={'class': 'form-select'}),
+            'course': forms.Select(attrs={'class': 'form-select'}),
         }

@@ -40,7 +40,7 @@
             <label for="id_exam_score" class="col-sm-2 offset-sm-1 col-form-label">Exam Score</label>
             <div class="col-sm-3">
                 <input type="number" name="exam_score" class="form-control" id="id_exam_score"
-                       value="{{ enrollment.exam_score }}" min="0" max="100" required/>
+                       value="{{ enrollment.exam_score }}" min="0" max="100" step=".01" required/>
             </div>
         </div>
 
