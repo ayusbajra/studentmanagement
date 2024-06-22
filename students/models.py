@@ -23,7 +23,7 @@ class Student(models.Model):
 class Course(models.Model):
     course_name = models.CharField(max_length=100)
     course_code = models.CharField(max_length=25, unique=True)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
 
     class Meta:
         db_table = 'course'
