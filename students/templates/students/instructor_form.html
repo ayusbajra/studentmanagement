@@ -1,0 +1,54 @@
+{% extends "students/base_generic.html" %}
+
+{% block breadcrumbs %}
+<div class="ps-3">
+    <span class=""><a href="{% url 'instructor_list' %}">Instructor List</a></span> >
+    <span class="">{% if instructor.pk %}Edit{% else %}Add New{% endif %} Instructor</span>
+</div>
+{% endblock %}
+
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="row mb-3">
+            <label for="id_first_name" class="col-sm-2 col-form-label">First Name</label>
+            <div class="col-sm-3">
+                <input type="text" name="first_name" class="form-control" id="id_first_name" value="{{ instructor.first_name }}" required/>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="id_last_name" class="col-sm-2 col-form-label">Last Name</label>
+            <div class="col-sm-3">
+                <input type="text" name="last_name" class="form-control" id="id_last_name" value="{{ instructor.last_name }}" required/>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="id_email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-3">
+                <input type="email" name="email" class="form-control" id="id_email" value="{{ instructor.email }}" required/>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="{{ form.courses.id_for_label }}" class="col-sm-2 col-form-label">Courses</label>
+            <div class="col-sm-3">
+                {{ form.courses }}
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            {{ form.non_field_errors }}
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-3 offset-md-2 d-grid ">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

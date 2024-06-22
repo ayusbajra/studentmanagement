@@ -2,40 +2,38 @@
 
 {% block breadcrumbs %}
 <div class="ps-3">
-    <span class="">Student List</span> >
-    <span class=""><a href="{% url 'student_create' %}">Add New Student</a></span>
+    <span class="">Instructor List</span> >
+    <span class=""><a href="{% url 'instructor_create' %}">Add New Instructor</a></span>
 </div>
 {% endblock %}
 
 {% block content %}
-    <!--    search and filter here    -->
+
 
     <table class="table table-bordered align-middle">
         <thead>
             <tr>
                 <th>Full Name</th>
                 <th>Email</th>
-                <th>DOB</th>
-                <th>Courses Enrolled In</th>
+                <th>Courses</th>
                 <th width="10%">Actions</th>
             </tr>
         </thead>
         <tbody>
-            {% for student in object_list %}
+            {% for instructor in object_list %}
                 <tr>
-                    <td><a href="{% url 'student_detail' student.pk %}">{{ student.first_name }} {{ student.last_name }}</a></td>
-                    <td>{{ student.email }}</td>
-                    <td>{{ student.date_of_birth }}</td>
+                    <td><a href="{% url 'instructor_detail' instructor.pk %}">{{ instructor.first_name }} {{ instructor.last_name }}</a></td>
+                    <td>{{ instructor.email }}</td>
                     <td>
-                        {% for course in student.courses %}
+                        {% for course in instructor.courses.all %}
                             <a class="btn btn-secondary" href="{% url 'course_detail' course.pk %}">{{ course }}</a>
                         {% endfor %}
                     </td>
                     <td>
-                        <a class="btn btn-primary" title="Edit" href="{% url 'student_update' student.pk %}">
+                        <a class="btn btn-primary" title="Edit" href="{% url 'instructor_update' instructor.pk %}">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
-                        <a class="btn btn-danger" title="Delete" href="{% url 'student_delete' student.pk %}">
+                        <a class="btn btn-danger" title="Delete" href="{% url 'instructor_delete' instructor.pk %}">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </td>

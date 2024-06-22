@@ -1,0 +1,19 @@
+{% extends "students/base_generic.html" %}
+
+{% block breadcrumbs %}
+<div class="ps-3">
+    <span class=""><a href="{% url 'course_list' %}">Course List</a></span> >
+    <span class=""><a href="{% url 'course_create' %}">Add New Course</a></span>
+</div>
+{% endblock %}
+
+{% block content %}
+
+    <p class="fs-4">Are you sure you want to delete "{{ course }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm</button>
+        <a class="btn btn-secondary" href="{% url 'course_list' %}">Cancel</a>
+    </form>
+
+{% endblock %}

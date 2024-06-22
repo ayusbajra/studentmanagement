@@ -1,0 +1,23 @@
+{% extends "students/base_generic.html" %}
+
+{% block breadcrumbs %}
+<div class="ps-3">
+    <span class=""><a href="{% url 'course_list' %}">Course List</a></span> >
+    <span class=""><a href="{% url 'course_create' %}">Add New Course</a></span>
+</div>
+{% endblock %}
+
+{% block content %}
+
+    <h4>{{ course.course_name }}</h4>
+    <p>Course Code: {{ course.course_code }}</p>
+    <p>Description: {{ course.description }}</p>
+
+    <a class="btn btn-primary" title="Edit" href="{% url 'course_update' course.pk %}">
+        <i class="fa-solid fa-pen-to-square"></i>
+    </a>
+    <a class="btn btn-danger" title="Delete" href="{% url 'course_delete' course.pk %}">
+        <i class="fa-solid fa-trash"></i>
+    </a>
+
+{% endblock %}

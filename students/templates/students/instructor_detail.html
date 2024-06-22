@@ -1,0 +1,28 @@
+{% extends "students/base_generic.html" %}
+
+{% block breadcrumbs %}
+<div class="ps-3">
+    <span class=""><a href="{% url 'instructor_list' %}">Instructor List</a></span> >
+    <span class=""><a href="{% url 'instructor_create' %}">Add New Instructor</a></span>
+</div>
+{% endblock %}
+
+{% block content %}
+
+    <h4>{{ instructor.first_name }} {{ instructor.last_name }}</h4>
+    <p>Email: {{ instructor.email }}</p>
+    <p>Courses:</p>
+    <ul>
+        {% for course in instructor.courses.all %}
+        <li>{{ course.course_name }}</li>
+        {% endfor %}
+    </ul>
+
+    <a class="btn btn-primary" title="Edit" href="{% url 'instructor_update' instructor.pk %}">
+        <i class="fa-solid fa-pen-to-square"></i>
+    </a>
+    <a class="btn btn-danger" title="Delete" href="{% url 'instructor_delete' instructor.pk %}">
+        <i class="fa-solid fa-trash"></i>
+    </a>
+
+{% endblock %}

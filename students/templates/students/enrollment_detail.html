@@ -1,0 +1,23 @@
+{% extends "students/base_generic.html" %}
+
+{% block breadcrumbs %}
+<div class="ps-3">
+    <span class=""><a href="{% url 'enrollment_list' %}">Enrollment List</a></span> >
+    <span class=""><a href="{% url 'enrollment_create' %}">Add New Enrollment</a></span>
+</div>
+{% endblock %}
+
+{% block content %}
+
+    <h4>{{ enrollment.student }} - {{ enrollment.course }}</h4>
+    <p>Grade: {{ enrollment.grade }}</p>
+    <p>Exam Score: {{ enrollment.exam_score }}</p>
+
+    <a class="btn btn-primary" title="Edit" href="{% url 'enrollment_update' enrollment.pk %}">
+        <i class="fa-solid fa-pen-to-square"></i>
+    </a>
+    <a class="btn btn-danger" title="Delete" href="{% url 'enrollment_delete' enrollment.pk %}">
+        <i class="fa-solid fa-trash"></i>
+    </a>
+
+{% endblock %}
