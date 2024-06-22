@@ -9,9 +9,32 @@
 
 {% block content %}
 
-    <h4>{{ student.first_name }} {{ student.last_name }}</h4>
+    <h4>{{ student }}</h4>
     <p>Email: {{ student.email }}</p>
     <p>Date of Birth: {{ student.date_of_birth }}</p>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <table class="table table-bordered align-middle">
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th class="text-end">Grade</th>
+                        <th width="30%">Exam Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for enroll in student.enrollment_set.all %}
+                        <tr>
+                            <td><a class="" href="{% url 'course_detail' enroll.course.pk %}">{{ enroll.course }}</a></td>
+                            <td class="text-end">{{ enroll.exam_score }}</td>
+                            <td>{{ enroll.grade }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <a class="btn btn-primary" title="Edit" href="{% url 'student_update' student.pk %}">
         <i class="fa-solid fa-pen-to-square"></i>

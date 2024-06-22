@@ -9,9 +9,16 @@
 
 {% block content %}
 
-    <h4>{{ course.course_name }}</h4>
+    <h4>{{ course }}</h4>
     <p>Course Code: {{ course.course_code }}</p>
     <p>Description: {{ course.description }}</p>
+    <p>Instructors:</p>
+    <ul>
+        {% for instructor in course.instructors.all %}
+            <li>{{ instructor }}</li>
+        {% endfor %}
+    </ul>
+
 
     <a class="btn btn-primary" title="Edit" href="{% url 'course_update' course.pk %}">
         <i class="fa-solid fa-pen-to-square"></i>

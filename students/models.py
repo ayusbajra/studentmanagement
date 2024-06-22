@@ -14,12 +14,6 @@ class Student(models.Model):
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
 
-    @property
-    def courses(self):
-        enrollments = Enrollment.objects.filter(student=self.pk)
-        courses = [x.course for x in enrollments]
-        return courses
-
 
 class Course(models.Model):
     course_name = models.CharField(max_length=100)

@@ -22,7 +22,7 @@
         <tbody>
             {% for instructor in object_list %}
                 <tr>
-                    <td><a href="{% url 'instructor_detail' instructor.pk %}">{{ instructor.first_name }} {{ instructor.last_name }}</a></td>
+                    <td><a href="{% url 'instructor_detail' instructor.pk %}">{{ instructor }}</a></td>
                     <td>{{ instructor.email }}</td>
                     <td>
                         {% for course in instructor.courses.all %}

@@ -23,12 +23,12 @@
         <tbody>
             {% for student in object_list %}
                 <tr>
-                    <td><a href="{% url 'student_detail' student.pk %}">{{ student.first_name }} {{ student.last_name }}</a></td>
+                    <td><a href="{% url 'student_detail' student.pk %}">{{ student }}</a></td>
                     <td>{{ student.email }}</td>
                     <td>{{ student.date_of_birth }}</td>
                     <td>
-                        {% for course in student.courses %}
-                            <a class="btn btn-secondary" href="{% url 'course_detail' course.pk %}">{{ course }}</a>
+                        {% for enroll in student.enrollment_set.all %}
+                            <a class="btn btn-secondary" href="{% url 'course_detail' enroll.course.pk %}">{{ enroll.course }}</a>
                         {% endfor %}
                     </td>
                     <td>

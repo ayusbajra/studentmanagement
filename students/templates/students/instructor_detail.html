@@ -9,12 +9,12 @@
 
 {% block content %}
 
-    <h4>{{ instructor.first_name }} {{ instructor.last_name }}</h4>
+    <h4>{{ instructor }}</h4>
     <p>Email: {{ instructor.email }}</p>
     <p>Courses:</p>
     <ul>
         {% for course in instructor.courses.all %}
-        <li>{{ course.course_name }}</li>
+            <li>{{ course }}</li>
         {% endfor %}
     </ul>
 

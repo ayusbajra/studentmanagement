@@ -23,7 +23,7 @@
         <tbody>
             {% for course in object_list %}
                 <tr>
-                    <td><a href="{% url 'course_detail' course.pk %}">{{ course.course_name }}</a></td>
+                    <td><a href="{% url 'course_detail' course.pk %}">{{ course }}</a></td>
                     <td>{{ course.course_code }}</td>
                     <td>{{ course.description }}</td>
                     <td>
