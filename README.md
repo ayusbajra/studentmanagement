@@ -99,7 +99,7 @@ environment file `env_local.env` or create new one according to `env_example.env
 
    `venv\Scripts\activate`
 
-###Installations
+### Installations
 
 1. **Install all dependencies from `requirement.txt`**:
 
@@ -113,7 +113,7 @@ environment file `env_local.env` or create new one according to `env_example.env
 
    `python manage.py createsuperuser`
 
-###Configurations
+### Configurations
 
 1. **Run the development server**:
 
