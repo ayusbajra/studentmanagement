@@ -92,8 +92,8 @@ and instructors by name and email.
 
    `python -m venv venv`
 
-2. **Setup PostgreSQL database and use the parameters from the provided 
-environment file `env_local.env` or create new one according to `env_example.env`**
+2. **Setup PostgreSQL database and create an environment file `env_local.env`,
+according to `env_example.env`**
 
 3. **Activate the virtual environment**:
 
