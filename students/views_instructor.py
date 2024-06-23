@@ -15,16 +15,16 @@ class InstructorListView(LoginRequiredMixin, ListView):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.course_form = None
+        self.search_form = None
 
     def get_queryset(self):
         queryset = super().get_queryset()
 
-        if self.course_form is None:
-            self.course_form = CourseFilterForm(self.request.GET)
+        if self.search_form is None:
+            self.search_form = CourseFilterForm(self.request.GET)
 
-        if self.course_form.is_valid():
-            query = self.course_form.cleaned_data.get('q')
+        if self.search_form.is_valid():
+            query = self.search_form.cleaned_data.get('q')
             if query:
                 queryset = queryset.filter(
                     Q(first_name__icontains=query) |
@@ -32,7 +32,7 @@ class InstructorListView(LoginRequiredMixin, ListView):
                     Q(email__icontains=query)
                 )
 
-            course = self.course_form.cleaned_data.get('course')
+            course = self.search_form.cleaned_data.get('course')
             if course:
                 queryset = queryset.filter(courses=course).distinct()
 
@@ -40,7 +40,7 @@ class InstructorListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['course_form'] = self.course_form
+        context['search_form'] = self.search_form
         return context
 
 

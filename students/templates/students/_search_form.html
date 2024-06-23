@@ -2,16 +2,17 @@
 <div class="mb-3">
     <form class="row align-items-center" method="get" action="">
         <div class="col-sm-3">
-            {{ course_form.q }}
+            {{ search_form.q }}
         </div>
 
+        {% if search_form.course %}
         <div class="col-sm-3">
-            {{ course_form.course }}
+            {{ search_form.course }}
         </div>
+        {% endif %}
 
         <div class="col-sm-2">
             <button class="btn btn-secondary" type="submit">See Results</button>
         </div>
-
     </form>
 </div>

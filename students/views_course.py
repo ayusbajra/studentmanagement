@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from students.forms import CourseForm
+from students.forms import CourseForm, SearchForm
 from students.models import Course
 
 
@@ -13,15 +13,30 @@ class CourseListView(LoginRequiredMixin, ListView):
     ordering = ['course_name']
     paginate_by = 10
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.search_form = None
+
     def get_queryset(self):
         queryset = super().get_queryset()
-        query = self.request.GET.get('q')
-        if query:
-            queryset = queryset.filter(
-                Q(course_name__icontains=query) |
-                Q(course_code__icontains=query)
-            )
+
+        if self.search_form is None:
+            self.search_form = SearchForm(self.request.GET)
+
+        if self.search_form.is_valid():
+            query = self.search_form.cleaned_data.get('q')
+            if query:
+                queryset = queryset.filter(
+                    Q(course_name__icontains=query) |
+                    Q(course_code__icontains=query)
+                )
+
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search_form'] = self.search_form
+        return context
 
 
 class CourseDetailView(LoginRequiredMixin, DetailView):
