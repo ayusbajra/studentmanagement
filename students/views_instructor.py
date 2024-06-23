@@ -8,16 +8,25 @@ from students.models import Instructor
 
 
 class InstructorListView(LoginRequiredMixin, ListView):
+    """
+    ListView for displaying a list of instructors with optional filtering by course and search query.
+    """
     model = Instructor
     template_name = 'students/instructor_list.html'
     ordering = ['first_name']
     paginate_by = 10
 
     def __init__(self, *args, **kwargs):
+        """
+        Initializes the InstructorListView instance.
+        """
         super().__init__(*args, **kwargs)
         self.search_form = None
 
     def get_queryset(self):
+        """
+        Returns the queryset of instructors filtered by search query and course selection.
+        """
         queryset = super().get_queryset()
 
         if self.search_form is None:
@@ -39,6 +48,9 @@ class InstructorListView(LoginRequiredMixin, ListView):
         return queryset
 
     def get_context_data(self, **kwargs):
+        """
+        Adds additional context data to the template context.
+        """
         context = super().get_context_data(**kwargs)
         context['search_form'] = self.search_form
         return context

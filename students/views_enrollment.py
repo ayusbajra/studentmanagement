@@ -8,16 +8,25 @@ from students.models import Enrollment
 
 
 class EnrollmentListView(LoginRequiredMixin, ListView):
+    """
+    ListView for displaying a list of enrollments with optional searching query.
+    """
     model = Enrollment
     template_name = 'students/enrollment_list.html'
     ordering = ['student']
     paginate_by = 10
 
     def __init__(self, *args, **kwargs):
+        """
+        Initializes the EnrollmentListView instance.
+        """
         super().__init__(*args, **kwargs)
         self.search_form = None
 
     def get_queryset(self):
+        """
+        Returns the queryset of enrollments filtered by search query.
+        """
         queryset = super().get_queryset()
 
         if self.search_form is None:
@@ -36,6 +45,9 @@ class EnrollmentListView(LoginRequiredMixin, ListView):
         return queryset
 
     def get_context_data(self, **kwargs):
+        """
+        Adds additional context data to the template context.
+        """
         context = super().get_context_data(**kwargs)
         context['search_form'] = self.search_form
         return context
