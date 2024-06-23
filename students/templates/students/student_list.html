@@ -31,7 +31,7 @@
                     <td>{{ student.date_of_birth }}</td>
                     <td>
                         {% for enroll in student.enrollment_set.all %}
-                            <a class="btn btn-secondary" href="{% url 'course_detail' enroll.course.pk %}">{{ enroll.course }}</a>
+                            <a class="btn btn-secondary mb-1" href="{% url 'course_detail' enroll.course.pk %}">{{ enroll.course }}</a>
                         {% endfor %}
                     </td>
                     <td>

@@ -31,7 +31,7 @@
                     <td>{{ course.description }}</td>
                     <td>
                         {% for instructor in course.instructors.all %}
-                            <a class="btn btn-secondary" href="{% url 'instructor_detail' instructor.pk %}">{{ instructor }}</a>
+                            <a class="btn btn-secondary mb-1" href="{% url 'instructor_detail' instructor.pk %}">{{ instructor }}</a>
                         {% endfor %}
                     </td>
                     <td>

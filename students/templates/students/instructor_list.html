@@ -29,7 +29,7 @@
                     <td>{{ instructor.email }}</td>
                     <td>
                         {% for course in instructor.courses.all %}
-                            <a class="btn btn-secondary" href="{% url 'course_detail' course.pk %}">{{ course }}</a>
+                            <a class="btn btn-secondary mb-1" href="{% url 'course_detail' course.pk %}">{{ course }}</a>
                         {% endfor %}
                     </td>
                     <td>
