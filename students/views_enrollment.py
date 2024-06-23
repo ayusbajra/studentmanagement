@@ -13,7 +13,7 @@ class EnrollmentListView(LoginRequiredMixin, ListView):
     """
     model = Enrollment
     template_name = 'students/enrollment_list.html'
-    ordering = ['student']
+    ordering = ['student__first_name']
     paginate_by = 10
 
     def __init__(self, *args, **kwargs):
