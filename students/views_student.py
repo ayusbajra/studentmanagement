@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from students.forms import StudentForm
-from students.models import Student
+from students.models import Student, Course
 
 
 class StudentListView(LoginRequiredMixin, ListView):
@@ -16,13 +16,24 @@ class StudentListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         query = self.request.GET.get('q')
+        course_id = self.request.GET.get('course')
+
         if query:
             queryset = queryset.filter(
                 Q(first_name__icontains=query) |
                 Q(last_name__icontains=query) |
                 Q(email__icontains=query)
             )
+
+        if course_id:
+            queryset = queryset.filter(enrollment__course_id=course_id).distinct()
+
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['courses'] = Course.objects.all()
+        return context
 
 
 class StudentDetailView(LoginRequiredMixin, DetailView):
