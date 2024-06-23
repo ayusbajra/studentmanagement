@@ -2,20 +2,11 @@
 <div class="mb-3">
     <form class="row align-items-center" method="get" action="">
         <div class="col-sm-3">
-            <input type="search" name="q" class="form-control" placeholder="Search" value="{{ request.GET.q }}">
+            {{ course_form.q }}
         </div>
 
         <div class="col-sm-3">
-            <select class="form-select" name="course">
-                <option value="">All Courses</option>
-                {% for course in courses %}
-                    {% if request.GET.course == course.id|stringformat:"s" %}
-                        <option value="{{ course.id }}" selected>{{ course.course_name }}</option>
-                    {% else %}
-                        <option value="{{ course.id }}">{{ course.course_name }}</option>
-                    {% endif %}>
-                {% endfor %}
-            </select>
+            {{ course_form.course }}
         </div>
 
         <div class="col-sm-2">

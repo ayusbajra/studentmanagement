@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from students.forms import StudentForm
+from students.forms import StudentForm, CourseFilterForm
 from students.models import Student, Course
 
 
@@ -13,26 +13,34 @@ class StudentListView(LoginRequiredMixin, ListView):
     ordering = ['first_name']
     paginate_by = 10
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.course_form = None
+
     def get_queryset(self):
         queryset = super().get_queryset()
-        query = self.request.GET.get('q')
-        course_id = self.request.GET.get('course')
 
-        if query:
-            queryset = queryset.filter(
-                Q(first_name__icontains=query) |
-                Q(last_name__icontains=query) |
-                Q(email__icontains=query)
-            )
+        if self.course_form is None:
+            self.course_form = CourseFilterForm(self.request.GET)
 
-        if course_id:
-            queryset = queryset.filter(enrollment__course_id=course_id).distinct()
+        if self.course_form.is_valid():
+            query = self.course_form.cleaned_data.get('q')
+            if query:
+                queryset = queryset.filter(
+                    Q(first_name__icontains=query) |
+                    Q(last_name__icontains=query) |
+                    Q(email__icontains=query)
+                )
+
+            course = self.course_form.cleaned_data.get('course')
+            if course:
+                queryset = queryset.filter(enrollment__course_id=course).distinct()
 
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['courses'] = Course.objects.all()
+        context['course_form'] = self.course_form
         return context
 
 

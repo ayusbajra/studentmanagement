@@ -2,6 +2,22 @@ from django import forms
 from .models import Student, Course, Enrollment, Instructor
 
 
+class SearchForm(forms.Form):
+    q = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={'placeholder': 'Search', 'class': 'form-control'})
+    )
+
+
+class CourseFilterForm(SearchForm):
+    course = forms.ModelChoiceField(
+        queryset=Course.objects.all(),
+        required=False,
+        empty_label='All Courses',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+
+
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
