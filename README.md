@@ -95,28 +95,33 @@ and instructors by name and email.
 
 1. **Clone the repository**:
 
-   ```bash
-   git clone https://github.com/ayusbajra/studentmanagement.git
+      ```
+      git clone https://github.com/ayusbajra/studentmanagement.git
+      ```
 
 2. **Create a virtual environment**:
 
-   ```bash
-   python -m venv venv
+      ```
+      python -m venv venv
+      ```
 
 3. **Activate the virtual environment**:
 
-   ```bash
-   venv\Scripts\activate
+      ```
+      venv\Scripts\activate
+      ```
 
 4. **Open Project Folder**:
 
-   ```bash
-   cd studentmanagement
-   
+      ```
+      cd studentmanagement
+      ```
+
 5. **Install all dependencies**:
 
-   ```bash
-   pip install -r requirement.txt
+      ```
+      pip install -r requirement.txt
+      ```
 
 6. **Create PostgreSQL database with username and password 
 to use in environment file `env_local.env`,
@@ -124,18 +129,21 @@ according to `env_example.env`**
 
 7. **Apply migrations to set up the database**:
 
-   ```bash
-   python manage.py migrate
+      ```
+      python manage.py migrate
+      ```
 
 8. **Create a superuser for accessing the application**:
 
-   ```bash
-   python manage.py createsuperuser
+      ```
+      python manage.py createsuperuser
+      ```
 
 9. **Run the development server**:
 
-   ```bash
-   python manage.py runserver
+      ```
+      python manage.py runserver
+      ```
 
 10. **Access the application**:
     - Open your web browser and navigate to `http://127.0.0.1:8000/`.
@@ -143,8 +151,9 @@ according to `env_example.env`**
 
 11. **Populate the database with realistic dummy data**:
 
-   ```bash
-   python manage.py populate_dummy_data
+      ```dos
+      python manage.py populate_dummy_data
+      ```
 
 <br>
 <hr>
