@@ -84,50 +84,71 @@ and instructors by name and email.
     ![Add/Edit Instructor](screenshots/add_edit_instructor.png)
 
 
-## 6. Deployment
+## 6. Setup to Run Locally
 
-### Using Virtual Environment
+### Prerequisites
 
-1. **Create a virtual environment**:
+- Python 3.x
+- Git
 
-   `python -m venv venv`
+### Steps
 
-2. **Setup PostgreSQL database and create an environment file `env_local.env`,
-according to `env_example.env`**
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/ayusbajra/studentmanagement.git
+
+2. **Create a virtual environment**:
+
+   ```bash
+   python -m venv venv
 
 3. **Activate the virtual environment**:
 
-   `venv\Scripts\activate`
+   ```bash
+   venv\Scripts\activate
 
-### Installations
+4. **Open Project Folder**:
 
-1. **Install all dependencies from `requirement.txt`**:
-
-   `pip install -r requirement.txt`
-
-2. **Apply migrations to set up the database**:
-
-   `python manage.py migrate`
-
-3. **Create a superuser for accessing the application**:
-
-   `python manage.py createsuperuser`
-
-### Configurations
-
-1. **Run the development server**:
-
-   `python manage.py runserver`
-
-2. **Access the application**:
-   - Open your web browser and navigate to `http://127.0.0.1:8000/`.
-   - Use the `username` and `password` of the superuser.
+   ```bash
+   cd studentmanagement
    
-3. **Populate the database with realistic dummy data**:
+5. **Install all dependencies**:
 
-   `python manage.py populate_dummy_data`
+   ```bash
+   pip install -r requirement.txt
 
+6. **Create PostgreSQL database with username and password 
+to use in environment file `env_local.env`,
+according to `env_example.env`**
+
+7. **Apply migrations to set up the database**:
+
+   ```bash
+   python manage.py migrate
+
+8. **Create a superuser for accessing the application**:
+
+   ```bash
+   python manage.py createsuperuser
+
+9. **Run the development server**:
+
+   ```bash
+   python manage.py runserver
+
+10. **Access the application**:
+    - Open your web browser and navigate to `http://127.0.0.1:8000/`.
+    - Use the `username` and `password` of the superuser.
+
+11. **Populate the database with realistic dummy data**:
+
+   ```bash
+   python manage.py populate_dummy_data
+
+<br>
 <hr>
+<br>
 
 This README provides an overview of the Student Management System, 
 covering its purpose, architecture, functional requirements, 
